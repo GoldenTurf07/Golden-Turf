@@ -34,8 +34,9 @@ input,textarea,select{width:100%;padding:11px;margin:4px 0 10px;border:1px solid
 .bk.c{border-left-color:var(--g2)}.bk .r{display:flex;gap:8px;margin-top:8px}.bk .r button{flex:1;padding:9px;border:0;border-radius:4px;color:#fff;font-family:inherit;font-weight:700}
 footer{text-align:center;padding:24px;font-size:13px}footer a{color:#566}
 .hide{display:none}.gh{margin:20px 0 8px;font-size:17px;color:var(--g);border-bottom:2px solid var(--g);padding-bottom:3px}.sl small s{color:#b33}.sl small b{color:var(--g2)}
+.sl.h{border-color:#7fb8ea;background:#dbeeff}.sl.h .tag{color:#1d5a91;font-weight:700}.hn{font-size:15px;font-weight:500;background:#fff2;border-radius:20px;padding:2px 12px;color:#fff;text-decoration:none;white-space:nowrap}.vt{display:flex;gap:8px;margin-bottom:10px}.vt .btn{padding:10px}
 </style></head><body>
-<header><h1 id="nm">Golden Turf</h1><p>তারিখ বেছে ফাঁকা স্লট বুক করুন</p></header>
+<header><h1><span id="nm">Golden Turf</span> <a class="hn" id="hn"></a></h1><p>তারিখ বেছে ফাঁকা স্লট বুক করুন</p></header>
 <main id="pub">
 <div class="gal" id="gal"></div><div id="vd"></div>
 <h2>তারিখ বাছুন</h2><div class="cal"><div class="cb"><button id="pv">‹</button><span id="mn"></span><button id="nx">›</button></div><div class="gr" id="gr"></div></div>
@@ -43,9 +44,9 @@ footer{text-align:center;padding:24px;font-size:13px}footer a{color:#566}
 </main>
 <main id="adm" class="hide">
 <div id="lg"><h2>অ্যাডমিন লগইন</h2><input id="em" type="email" placeholder="ইমেইল"><input id="pw" type="password" placeholder="পাসওয়ার্ড"><div class="err" id="le"></div><button class="btn" id="li">লগইন</button></div>
-<div id="pn" class="hide"><h2>বুকিং কনফার্ম করুন</h2><div id="pl"></div><h2>কনফার্মড বুকিং</h2><div id="cl"></div>
-<h2>অফলাইন বুকিং যোগ করুন</h2><div class="note">ফোনে বা মাঠে সরাসরি বুকিং নিলে এখানে যোগ করুন। স্লটটা সাইটে লাল সোল্ড আউট দেখাবে।</div><label>তারিখ</label><input id="o_d" type="date"><label>স্লট</label><select id="o_s"></select><label>নাম (ঐচ্ছিক)</label><input id="o_n"><label>ফোন (ঐচ্ছিক)</label><input id="o_p" type="tel"><button class="btn" id="o_b" style="margin-top:6px">সোল্ড আউট করুন</button>
-<h2>সেটিংস</h2><label>মাঠের নাম</label><input id="s_n"><label>বিকাশ নম্বর</label><input id="s_b"><label>হোয়াটসঅ্যাপ নম্বর (880 দিয়ে, যেমন 8801XXXXXXXXX)</label><input id="s_w">
+<div id="pn" class="hide"><div class="vt"><button class="btn" id="v1">সব বুকিং</button><button class="btn o" id="v2">তারিখ অনুযায়ী</button></div><div id="va"><h2>বুকিং কনফার্ম করুন</h2><div id="pl"></div><h2>কনফার্মড বুকিং</h2><div id="cl"></div></div><div id="vb" class="hide"><h2>তারিখ অনুযায়ী স্লট</h2><input id="v_d" type="date"><div id="dl"></div></div>
+<h2>অফলাইন বুকিং যোগ করুন</h2><div class="note">ফোনে বা মাঠে সরাসরি বুকিং নিলে এখানে যোগ করুন। স্লটটা সাইটে লাল সোল্ড আউট দেখাবে।</div><label>তারিখ</label><input id="o_d" type="date"><label>স্লট</label><select id="o_s"></select><label>নাম (ঐচ্ছিক)</label><input id="o_n"><label>ফোন (ঐচ্ছিক)</label><input id="o_p" type="tel"><label>অগ্রিম (ঐচ্ছিক)</label><input id="o_a" type="number"><label>বকেয়া (ঐচ্ছিক)</label><input id="o_v" type="number"><button class="btn" id="o_b" style="margin-top:6px">সোল্ড আউট করুন</button>
+<h2>সেটিংস</h2><label>মাঠের নাম</label><input id="s_n"><label>বুকিং নম্বর (সাইটের নামের পাশে দেখাবে)</label><input id="s_c" type="tel"><label>বিকাশ নম্বর</label><input id="s_b"><label>হোয়াটসঅ্যাপ নম্বর (880 দিয়ে, যেমন 8801XXXXXXXXX)</label><input id="s_w">
 <label>বেশি ভাড়ার দিন (যেমন: বৃহ,শুক্র,শনি)</label><input id="s_d"><label>কমপক্ষে অ্যাডভান্স (টাকা)</label><input id="s_a"><label>ছাড়ের পরিমাণ (কাটা দাম দেখানোর জন্য, না চাইলে 0)</label><input id="s_x"><label>স্লট (গ্রুপের নাম # দিয়ে লিখুন; প্রতি লাইনে: সময়|সাধারণ ভাড়া|বিশেষ দিনের ভাড়া)</label><textarea id="s_s" rows="8"></textarea>
 <label>ছবির লিংক (প্রতি লাইনে একটি)</label><textarea id="s_i" rows="3"></textarea><label>YouTube ভিডিও লিংক</label><input id="s_v">
 <button class="btn" id="sv">সেভ করুন</button><button class="btn o" id="lo" style="margin-top:10px">লগআউট</button></div></main>
@@ -60,43 +61,46 @@ import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https:
 const app=initializeApp({apiKey:"AIzaSyBUEhVi7cqGvIWWgsEwLgXhCNQ8HvohqWk",authDomain:"turf-booking-gt.firebaseapp.com",projectId:"turf-booking-gt",storageBucket:"turf-booking-gt.firebasestorage.app",messagingSenderId:"127711522177",appId:"1:127711522177:web:2983afbd679f2d61144c80"});
 const db=getFirestore(app),au=getAuth(app),$=i=>document.getElementById(i);
 const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fh=h=>{h=h%24;const p=h<12?"AM":"PM";return(h%12||12)+":00 "+p};
-const DEF={name:"Golden Turf",bkash:"01676372399",sd:"বৃহ,শুক্র,শনি",disc:"500",adv:"500",wa:"8801352309648",images:"",video:"",slots:"# সকাল / দুপুর\n6:00 AM - 7:30 AM|1500|2000\n7:30 AM - 9:00 AM|1500|2000\n9:00 AM - 10:30 AM|1500|2000\n10:30 AM - 12:00 PM|1500|2000\n12:00 PM - 1:30 PM|1500|2000\n1:30 PM - 3:00 PM|1500|2000\n# বিকেল\n3:00 PM - 4:30 PM|2000|2500\n4:30 PM - 6:00 PM|2000|2500\n# রাত\n6:00 PM - 7:30 PM|2500|3000\n7:30 PM - 9:00 PM|2500|3000\n9:00 PM - 10:30 PM|2500|3000\n10:30 PM - 12:00 AM|2500|3000\n# মধ্যরাত\n12:00 AM - 1:30 AM|2500|3000\n1:30 AM - 3:00 AM|2500|3000\n3:00 AM - 4:30 AM|2500|3000\n4:30 AM - 6:00 AM|2500|3000"};
+const DEF={name:"Golden Turf",bkash:"01676372399",sd:"বৃহ,শুক্র,শনি",disc:"500",adv:"500",wa:"8801352309648",phone:"01352309648",images:"",video:"",slots:"# সকাল / দুপুর\n6:00 AM - 7:30 AM|1500|2000\n7:30 AM - 9:00 AM|1500|2000\n9:00 AM - 10:30 AM|1500|2000\n10:30 AM - 12:00 PM|1500|2000\n12:00 PM - 1:30 PM|1500|2000\n1:30 PM - 3:00 PM|1500|2000\n# বিকেল\n3:00 PM - 4:30 PM|2000|2500\n4:30 PM - 6:00 PM|2000|2500\n# রাত\n6:00 PM - 7:30 PM|2500|3000\n7:30 PM - 9:00 PM|2500|3000\n9:00 PM - 10:30 PM|2500|3000\n10:30 PM - 12:00 AM|2500|3000\n# মধ্যরাত\n12:00 AM - 1:30 AM|2500|3000\n1:30 AM - 3:00 AM|2500|3000\n3:00 AM - 4:30 AM|2500|3000\n4:30 AM - 6:00 AM|2500|3000"};
 const MN=["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"],WD=["রবি","সোম","মঙ্গল","বুধ","বৃহ","শুক্র","শনি"];
 const key=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const today=new Date();today.setHours(0,0,0,0);
+const H=1800000,busy=st=>!st?0:st.s=="confirmed"?"s":(!st.t||Date.now()-st.t<H)?"h":0;
 let C={...DEF},taken={},sel=new Date(today),vm=new Date(today.getFullYear(),today.getMonth(),1),cur=null,seen=null;
 const sp=()=>C.sd.split(/[,\s]+/).filter(Boolean),pr=(s,d)=>(s.p2&&sp().some(x=>WD[d.getDay()].startsWith(x)))?s.p2:s.p;
 const slots=()=>C.slots.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{if(l[0]=="#")return{h:l.slice(1).trim()};const[a,b,c]=l.split("|");return{l:a.trim(),p:+(b||0),p2:+(c||0)}});
-function cfg(){$("nm").textContent=C.name;document.title=C.name;
-$("gal").innerHTML=C.images.split("\n").filter(u=>u.trim()).map(u=>`<img src="${u.trim()}" alt="">`).join("");
+function cfg(){$("nm").textContent=C.name;$("hn").textContent=C.phone?"📞 বুকিং: "+C.phone:"";if(C.phone)$("hn").href="tel:"+C.phone.replace(/[^\d+]/g,"");document.title=C.name;
+$("gal").innerHTML=C.images.split("\n").filter(u=>u.trim()).map(u=>`<img src="${esc(u.trim())}" alt="">`).join("");
 const m=(C.video||"").match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);$("vd").innerHTML=m?`<iframe class="vid" src="https://www.youtube.com/embed/${m[1]}" allowfullscreen></iframe>`:""}
 function cal(){$("mn").textContent=MN[vm.getMonth()]+" "+bn(vm.getFullYear());let h=WD.map(w=>`<b>${w}</b>`).join("");
 for(let i=0;i<vm.getDay();i++)h+="<span></span>";const n=new Date(vm.getFullYear(),vm.getMonth()+1,0).getDate();
 for(let d=1;d<=n;d++){const x=new Date(vm.getFullYear(),vm.getMonth(),d);h+=`<button class="d ${key(x)==key(sel)?"on":""} ${x.getTime()==today.getTime()?"t":""}" data-d="${key(x)}" ${x<today?"disabled":""}>${bn(d)}</button>`}
 $("gr").innerHTML=h}
 function list(){const k=key(sel);$("dt").textContent=bn(sel.getDate())+" "+MN[sel.getMonth()]+", "+WD[sel.getDay()]+"বার";
-let n=-1;$("sl").innerHTML=slots().map(s=>{if(s.h){const x=new Date(sel.getFullYear(),sel.getMonth(),sel.getDate()+1);return`<h3 class="gh">${s.h.startsWith("মধ্যরাত")?"মধ্যরাত - "+bn(x.getDate())+" "+MN[x.getMonth()]+" ভোর (রাত পেরিয়ে)":s.h}</h3>`}const i=++n,st=taken[k+"_"+i];
-if(st)return`<div class="sl s"><div>${s.l}</div><span class="tag">সোল্ড আউট</span></div>`;
+let n=-1;$("sl").innerHTML=slots().map(s=>{if(s.h){const x=new Date(sel.getFullYear(),sel.getMonth(),sel.getDate()+1);return`<h3 class="gh">${s.h.startsWith("মধ্যরাত")?"মধ্যরাত - "+bn(x.getDate())+" "+MN[x.getMonth()]+" ভোর (রাত পেরিয়ে)":esc(s.h)}</h3>`}const i=++n,st=taken[k+"_"+i];
+const bz=busy(st);if(bz=="h")return`<div class="sl h"><div>${esc(s.l)}</div><span class="tag">হোল্ড করা${st.t?" ("+bn(Math.ceil((st.t+H-Date.now())/60000))+" মি.)":""}</span></div>`;if(bz)return`<div class="sl s"><div>${esc(s.l)}</div><span class="tag">সোল্ড আউট</span></div>`;
 
-return`<div class="sl"><div>${s.l}<small>${+C.disc?`<s>৳${bn(pr(s,sel)+ +C.disc)}</s> `:""}<b>৳${bn(pr(s,sel))}</b></small></div><button data-i="${i}">বুক নাও</button></div>`}).join("")}
+return`<div class="sl"><div>${esc(s.l)}<small>${+C.disc?`<s>৳${bn(pr(s,sel)+ +C.disc)}</s> `:""}<b>৳${bn(pr(s,sel))}</b></small></div><button data-i="${i}">বুক নাও</button></div>`}).join("")}
 $("pv").onclick=()=>{vm=new Date(vm.getFullYear(),vm.getMonth()-1,1);cal()};$("nx").onclick=()=>{vm=new Date(vm.getFullYear(),vm.getMonth()+1,1);cal()};
 $("gr").onclick=e=>{const b=e.target.closest("[data-d]");if(!b)return;const[y,m,d]=b.dataset.d.split("-");sel=new Date(+y,m-1,+d);cal();list()};
 $("sl").onclick=e=>{const b=e.target.closest("[data-i]");if(!b)return;const s=slots().filter(x=>!x.h)[b.dataset.i];cur={i:+b.dataset.i,s,k:key(sel),pr:pr(s,sel)};
 $("mt").textContent=s.l+" ("+bn(sel.getDate())+" "+MN[sel.getMonth()]+")";
 const av=Math.min(+C.adv||0,cur.pr),du=cur.pr-av;
-$("mi").innerHTML=`<b>মোট ভাড়া: ৳${bn(cur.pr)}</b><br>বুকিং নিশ্চিত করতে <b>কমপক্ষে ৳${bn(av)} অ্যাডভান্স</b> বিকাশ করুন।<br>বিকাশ নম্বর: <b>${C.bkash||"(নম্বর সেট করা হয়নি)"}</b> (Send Money)<br>বাকি ৳${bn(du)} মাঠে এসে পরিশোধ করতে পারবেন।<br><br>বিকাশ করার পর নিচে ট্রানজেকশন আইডি দিয়ে জমা দিন। যাচাই করে আপনাকে কল বা মেসেজে কনফার্মেশন পাঠিয়ে দেওয়া হবে।`;
+$("mi").innerHTML=`<b>মোট ভাড়া: ৳${bn(cur.pr)}</b><br>বুকিং নিশ্চিত করতে <b>কমপক্ষে ৳${bn(av)} অ্যাডভান্স</b> বিকাশ করুন।<br>বিকাশ নম্বর: <b>${esc(C.bkash)||"(নম্বর সেট করা হয়নি)"}</b> (Send Money)<br>বাকি ৳${bn(du)} মাঠে এসে পরিশোধ করতে পারবেন।<br><br>বিকাশ করার পর নিচে ট্রানজেকশন আইডি দিয়ে জমা দিন। যাচাই করে আপনাকে কল বা মেসেজে কনফার্মেশন পাঠিয়ে দেওয়া হবে। জমা দেওয়ার পর ৩০ মিনিট স্লটটি আপনার জন্য হোল্ড থাকবে, এর মধ্যে কনফার্ম না হলে স্লট আবার খালি হয়ে যাবে।`;
 $("mf").classList.remove("hide");$("ok").classList.add("hide");$("fe").textContent="";$("md").classList.add("on")};
 $("fc").onclick=()=>$("md").classList.remove("on");
-$("fs").onclick=async()=>{const n=$("f_n").value.trim(),p=$("f_p").value.trim(),t=$("f_t").value.trim().toUpperCase();
+$("fs").onclick=async()=>{const n=$("f_n").value.trim().slice(0,60),p=$("f_p").value.trim(),t=$("f_t").value.trim().toUpperCase();
 if(!n)return $("fe").textContent="নাম দিন";if(!/^01\d{9}$/.test(p))return $("fe").textContent="ঠিক ১১ সংখ্যার ফোন নম্বর দিন (01XXXXXXXXX)";if(!/^[A-Z0-9]{8,20}$/.test(t))return $("fe").textContent="বিকাশের ট্রানজেকশন আইডি ঠিকভাবে দিন";
-const id=cur.k+"_"+cur.i,b=writeBatch(db);b.set(doc(db,"taken",id),{d:cur.k,s:"pending"});
-b.set(doc(db,"bookings",id),{d:cur.k,idx:cur.i,label:cur.s.l,price:cur.pr,name:n,phone:p,trx:t,status:"pending",t:Date.now()});
+const id=cur.k+"_"+cur.i;if(busy(taken[id])){list();return $("fe").textContent="স্লটটি এইমাত্র অন্য কেউ নিয়ে নিয়েছে। অন্য স্লট বেছে নিন."}
+const b=writeBatch(db),T=Date.now();b.set(doc(db,"taken",id),{d:cur.k,s:"pending",t:T});
+b.set(doc(db,"bookings",id),{d:cur.k,idx:cur.i,label:cur.s.l,price:cur.pr,name:n,phone:p,trx:t,status:"pending",t:T});
 $("fs").disabled=true;try{await b.commit();$("mf").classList.add("hide");
 const msg=encodeURIComponent(`নতুন বুকিং\nতারিখ: ${cur.k}\nস্লট: ${cur.s.l}\nনাম: ${n}\nফোন: ${p}\nবিকাশ TrxID: ${t}`);
-$("ok").innerHTML=`<p><b>বুকিং জমা হয়েছে।</b> আমরা ট্রানজেকশন আইডি যাচাই করে কনফার্ম করব। দ্রুত কনফার্মেশনের জন্য হোয়াটসঅ্যাপে জানান:</p>${C.wa?`<a class="btn w" target="_blank" href="https://wa.me/${C.wa}?text=${msg}">হোয়াটসঅ্যাপে পাঠান</a>`:""}`;$("ok").classList.remove("hide")}
+$("ok").innerHTML=`<p><b>বুকিং জমা হয়েছে।</b> আমরা ট্রানজেকশন আইডি যাচাই করে কনফার্ম করব। দ্রুত কনফার্মেশনের জন্য হোয়াটসঅ্যাপে জানান:</p>${C.wa?`<a class="btn w" target="_blank" href="https://wa.me/${C.wa.replace(/\D/g,"")}?text=${msg}">হোয়াটসঅ্যাপে পাঠান</a>`:""}`;$("ok").classList.remove("hide")}
 catch(e){$("fe").textContent="স্লটটি এইমাত্র অন্য কেউ নিয়ে নিয়েছে বা ইন্টারনেটে সমস্যা। অন্য স্লট বেছে নিন।"}$("fs").disabled=false};
-onSnapshot(query(collection(db,"taken"),where("d",">=",key(today))),s=>{taken={};s.forEach(d=>taken[d.id]=d.data().s);list()});
+onSnapshot(query(collection(db,"taken"),where("d",">=",key(today))),s=>{taken={};s.forEach(d=>taken[d.id]=d.data());list()});
 getDoc(doc(db,"config","main")).then(s=>{if(s.exists())C={...DEF,...s.data()};cfg();list()}).catch(()=>{});
 cfg();cal();list();
 // ---- admin ----
@@ -104,24 +108,33 @@ $("al").onclick=e=>{e.preventDefault();$("pub").classList.add("hide");$("adm").c
 $("li").onclick=async()=>{try{await signInWithEmailAndPassword(au,$("em").value.trim(),$("pw").value)}catch(e){$("le").textContent="ইমেইল বা পাসওয়ার্ড ভুল"}};
 $("lo").onclick=()=>{signOut(au);location.reload()};
 const beep=()=>{try{const a=new AudioContext(),o=a.createOscillator();o.connect(a.destination);o.frequency.value=880;o.start();o.stop(a.currentTime+.6)}catch(e){}};
-let unsub=null;
-const fillSel=()=>{$("o_s").innerHTML=slots().filter(x=>!x.h).map((x,i)=>`<option value="${i}">${x.l}</option>`).join("")};
-$("o_b").onclick=async()=>{const d=$("o_d").value,i=+$("o_s").value;if(!d)return alert("তারিখ বেছে নিন");const id=d+"_"+i;if(taken[id])return alert("এই স্লট আগেই বুক বা সোল্ড আউট আছে");
+let unsub=null,ALL=[];
+const exp=b=>b.status=="pending"&&b.trx!="OFFLINE"&&Date.now()-b.t>H;
+const card=b=>`<div class="bk ${b.status=="confirmed"?"c":""}"><b>${esc(b.d)}</b> | ${esc(b.label)}<br>${esc(b.name)}${b.phone?" • "+esc(b.phone):""}<br>${b.trx=="OFFLINE"?"অফলাইন":"TrxID: <b>"+esc(b.trx)+"</b>"} • ৳${esc(b.price)}${b.adv?" • অগ্রিম ৳"+esc(b.adv):""}${b.due?" • বকেয়া ৳"+esc(b.due):""}<div class="r">${b.status=="pending"?`<button style="background:#1c6b46" data-ok="${esc(b.id)}">কনফার্ম</button>`:""}<button style="background:#c8372d" data-no="${esc(b.id)}">${b.status=="pending"?"বাতিল":"ডিলেট (স্লট খালি)"}</button></div></div>`;
+const rend=()=>{const L=ALL.filter(b=>!exp(b));
+$("pl").innerHTML=L.filter(b=>b.status=="pending").map(card).join("")||"<p>কোনো পেন্ডিং বুকিং নেই।</p>";
+$("cl").innerHTML=L.filter(b=>b.status=="confirmed").map(card).join("")||"<p>নেই।</p>";
+const by={};L.filter(b=>b.d==$("v_d").value).forEach(b=>by[b.idx]=b);let n=-1;
+$("dl").innerHTML=slots().map(x=>{if(x.h)return`<h3 class="gh">${esc(x.h)}</h3>`;const i=++n;return by[i]?card(by[i]):`<div class="bk" style="border-left-color:#bbb;opacity:.7">${esc(x.l)} — খালি</div>`}).join("");
+const E=ALL.filter(exp);if(E.length){const b=writeBatch(db);E.forEach(x=>{b.delete(doc(db,"taken",x.id));b.delete(doc(db,"bookings",x.id))});b.commit().catch(()=>{})}};
+const tv=a=>{$("va").classList.toggle("hide",!a);$("vb").classList.toggle("hide",a);$("v1").className=a?"btn":"btn o";$("v2").className=a?"btn o":"btn"};
+$("v1").onclick=()=>tv(1);$("v2").onclick=()=>tv(0);$("v_d").onchange=rend;
+setInterval(()=>{list();if(ALL.length)rend()},30000);
+const fillSel=()=>{$("o_s").innerHTML=slots().filter(x=>!x.h).map((x,i)=>`<option value="${i}">${esc(x.l)}</option>`).join("")};
+$("o_b").onclick=async()=>{const d=$("o_d").value,i=+$("o_s").value;if(!d)return alert("তারিখ বেছে নিন");const id=d+"_"+i;if(busy(taken[id]))return alert("এই স্লট আগেই বুক বা সোল্ড আউট আছে");
 const[y,m,dd]=d.split("-"),sl=slots().filter(x=>!x.h)[i],b=writeBatch(db);
-b.set(doc(db,"taken",id),{d,s:"pending"});b.set(doc(db,"bookings",id),{d,idx:i,label:sl.l,price:pr(sl,new Date(+y,m-1,+dd)),name:$("o_n").value.trim()||"অফলাইন বুকিং",phone:$("o_p").value.trim().slice(0,14),trx:"OFFLINE",status:"pending",t:Date.now()});
-try{await b.commit();const c=writeBatch(db);c.update(doc(db,"taken",id),{s:"confirmed"});c.update(doc(db,"bookings",id),{status:"confirmed"});await c.commit();alert("সোল্ড আউট হয়েছে");$("o_n").value="";$("o_p").value=""}catch(x){alert("ব্যর্থ: "+x.message)}};
+b.set(doc(db,"taken",id),{d,s:"pending",t:Date.now()});b.set(doc(db,"bookings",id),{d,idx:i,label:sl.l,price:pr(sl,new Date(+y,m-1,+dd)),name:$("o_n").value.trim()||"অফলাইন বুকিং",phone:$("o_p").value.trim().slice(0,14),trx:"OFFLINE",adv:$("o_a").value.trim(),due:$("o_v").value.trim(),status:"pending",t:Date.now()});
+try{await b.commit();const c=writeBatch(db);c.update(doc(db,"taken",id),{s:"confirmed"});c.update(doc(db,"bookings",id),{status:"confirmed"});await c.commit();alert("সোল্ড আউট হয়েছে");$("o_n").value="";$("o_p").value="";$("o_a").value="";$("o_v").value=""}catch(x){alert("ব্যর্থ: "+x.message)}};
 onAuthStateChanged(au,u=>{if(!u){$("lg").classList.remove("hide");$("pn").classList.add("hide");return}
 $("lg").classList.add("hide");$("pn").classList.remove("hide");
-$("s_n").value=C.name;$("s_b").value=C.bkash;$("s_w").value=C.wa;$("s_s").value=C.slots;$("s_i").value=C.images;$("s_v").value=C.video;$("s_d").value=C.sd;$("s_x").value=C.disc;$("s_a").value=C.adv;fillSel();$("o_d").min=$("o_d").value=key(today);
-unsub=onSnapshot(query(collection(db,"bookings"),where("d",">=",key(today))),s=>{const all=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.d.localeCompare(b.d)||a.idx-b.idx);
-const P=all.filter(b=>b.status=="pending"),Cn=all.filter(b=>b.status=="confirmed");
-if(seen!==null&&P.some(b=>b.trx!="OFFLINE"&&!seen.has(b.id))){beep();document.title="🔔 নতুন বুকিং!"}seen=new Set(P.map(b=>b.id));
-const card=b=>`<div class="bk ${b.status=="confirmed"?"c":""}"><b>${b.d}</b> | ${b.label}<br>${b.name} • ${b.phone}<br>TrxID: <b>${b.trx}</b> • ৳${b.price}<div class="r">${b.status=="pending"?`<button style="background:#1c6b46" data-ok="${b.id}">কনফার্ম</button>`:""}<button style="background:#c8372d" data-no="${b.id}">${b.status=="pending"?"বাতিল":"স্লট খালি করুন"}</button></div></div>`;
-$("pl").innerHTML=P.map(card).join("")||"<p>কোনো পেন্ডিং বুকিং নেই।</p>";$("cl").innerHTML=Cn.map(card).join("")||"<p>নেই।</p>"})});
+$("s_n").value=C.name;$("s_b").value=C.bkash;$("s_c").value=C.phone;$("s_w").value=C.wa;$("s_s").value=C.slots;$("s_i").value=C.images;$("s_v").value=C.video;$("s_d").value=C.sd;$("s_x").value=C.disc;$("s_a").value=C.adv;fillSel();$("o_d").min=$("o_d").value=key(today);$("v_d").value=key(today);
+unsub=onSnapshot(query(collection(db,"bookings"),where("d",">=",key(today))),s=>{ALL=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.d.localeCompare(b.d)||a.idx-b.idx);
+const P=ALL.filter(b=>b.status=="pending"&&!exp(b));
+if(seen!==null&&P.some(b=>b.trx!="OFFLINE"&&!seen.has(b.id))){beep();document.title="🔔 নতুন বুকিং!"}seen=new Set(P.map(b=>b.id));rend()})});
 $("adm").onclick=async e=>{const o=e.target.dataset.ok,n=e.target.dataset.no;if(!o&&!n)return;const b=writeBatch(db);
 if(o){b.update(doc(db,"taken",o),{s:"confirmed"});b.update(doc(db,"bookings",o),{status:"confirmed"})}
 else{if(!confirm("নিশ্চিত?"))return;b.delete(doc(db,"taken",n));b.delete(doc(db,"bookings",n))}
 try{await b.commit()}catch(x){alert("ব্যর্থ: "+x.message)}};
-$("sv").onclick=async()=>{const v={name:$("s_n").value,bkash:$("s_b").value.trim(),wa:$("s_w").value.trim(),slots:$("s_s").value,images:$("s_i").value,video:$("s_v").value.trim(),sd:$("s_d").value.trim(),disc:$("s_x").value.trim()||"0",adv:$("s_a").value.trim()||"500"};
+$("sv").onclick=async()=>{const v={name:$("s_n").value,phone:$("s_c").value.trim(),bkash:$("s_b").value.trim(),wa:$("s_w").value.trim(),slots:$("s_s").value,images:$("s_i").value,video:$("s_v").value.trim(),sd:$("s_d").value.trim(),disc:$("s_x").value.trim()||"0",adv:$("s_a").value.trim()||"500"};
 try{await setDoc(doc(db,"config","main"),v);C={...DEF,...v};cfg();list();fillSel();alert("সেভ হয়েছে")}catch(x){alert("ব্যর্থ: "+x.message)}};
 </script></body></html>
