@@ -63,11 +63,11 @@ footer{text-align:center;padding:24px;font-size:13px}footer a{color:#566}
 
 <header>
   <div class="hd">
-    <img class="logo" src="images/golden-turf-logo.jpg" alt="Golden Turf" onerror="this.remove()">
+    <img class="logo" src="golden-turf-logo.png" alt="Golden Turf" onerror="this.remove()">
     <div class="hd-t">
       <h1 id="nm">Golden Turf</h1>
       <div class="sub">
-        <img class="fifa" src="images/fifa-logo.png" alt="FIFA Quality" onerror="this.remove()">
+        <img class="fifa" src="fifa-logo.jpg" alt="FIFA Quality" onerror="this.remove()">
         <span>FIFA স্ট্যান্ডার্ড 50 MM ইনফিল ঘাস</span>
       </div>
       <div class="addr" id="ad"></div>
@@ -186,7 +186,7 @@ const app=initializeApp({apiKey:"AIzaSyBUEhVi7cqGvIWWgsEwLgXhCNQ8HvohqWk",authDo
 const db=getFirestore(app),au=getAuth(app),$=i=>document.getElementById(i);
 const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const DEF={name:"Golden Turf",bkash:"01676372399",owner:"Ratul",address:"সাইনবোর্ড শাপলা চত্বর, ডগাইর, ঢাকা-১৩৬১",names:"Ratul",sd:"বৃহ,শুক্র,শনি",disc:"500",adv:"500",wa:"8801352309648",phone:"01352309648",images:"images/ground.jpg",video:"",slots:"# সকাল / দুপুর\n6:00 AM - 7:30 AM|1500|2000\n7:30 AM - 9:00 AM|1500|2000\n9:00 AM - 10:30 AM|1500|2000\n10:30 AM - 12:00 PM|1500|2000\n12:00 PM - 1:30 PM|1500|2000\n1:30 PM - 3:00 PM|1500|2000\n# বিকেল\n3:00 PM - 4:30 PM|2000|2500\n4:30 PM - 6:00 PM|2000|2500\n# রাত\n6:00 PM - 7:30 PM|2500|3000\n7:30 PM - 9:00 PM|2500|3000\n9:00 PM - 10:30 PM|2500|3000\n10:30 PM - 12:00 AM|2500|3000\n# মধ্যরাত\n12:00 AM - 1:30 AM|2500|3000\n1:30 AM - 3:00 AM|2500|3000\n3:00 AM - 4:30 AM|2500|3000\n4:30 AM - 6:00 AM|2500|3000"};
+const DEF={name:"Golden Turf",bkash:"01676372399",owner:"Ratul",address:"সাইনবোর্ড শাপলা চত্বর, ডগাইর, ঢাকা-১৩৬১",names:"Ratul",sd:"বৃহ,শুক্র,শনি",disc:"500",adv:"500",wa:"8801352309648",phone:"01352309648",images:"ground.jpg",video:"",slots:"# সকাল / দুপুর\n6:00 AM - 7:30 AM|1500|2000\n7:30 AM - 9:00 AM|1500|2000\n9:00 AM - 10:30 AM|1500|2000\n10:30 AM - 12:00 PM|1500|2000\n12:00 PM - 1:30 PM|1500|2000\n1:30 PM - 3:00 PM|1500|2000\n# বিকেল\n3:00 PM - 4:30 PM|2000|2500\n4:30 PM - 6:00 PM|2000|2500\n# রাত\n6:00 PM - 7:30 PM|2500|3000\n7:30 PM - 9:00 PM|2500|3000\n9:00 PM - 10:30 PM|2500|3000\n10:30 PM - 12:00 AM|2500|3000\n# মধ্যরাত\n12:00 AM - 1:30 AM|2500|3000\n1:30 AM - 3:00 AM|2500|3000\n3:00 AM - 4:30 AM|2500|3000\n4:30 AM - 6:00 AM|2500|3000"};
 const MN=["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"],WD=["রবি","সোম","মঙ্গল","বুধ","বৃহ","শুক্র","শনি"];
 const key=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const today=new Date();today.setHours(0,0,0,0);
@@ -203,7 +203,7 @@ function cfg(){
   $("nm").textContent=C.name;
   $("ad").textContent="📍 "+C.address;
   const h=$("hn");
-  if(C.phone){h.innerHTML=WAI+" বুকিং: "+bn(C.phone);h.href=wl(C.wa||cwa(C.phone));h.style.display=""}else h.style.display="none";
+  if(C.phone){h.innerHTML=WAI+" বুকিং: "+C.phone;h.href=wl(C.wa||cwa(C.phone));h.style.display=""}else h.style.display="none";
   document.title=C.name;
   $("gal").innerHTML=C.images.split("\n").filter(u=>u.trim()).map(u=>`<img src="${esc(u.trim())}" alt="" onerror="this.remove()">`).join("");
   const m=(C.video||"").match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
