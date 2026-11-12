@@ -23,6 +23,7 @@ h2{font-size:20px;margin:26px 0 10px}
 .vid{aspect-ratio:16/9;width:100%;border:0;border-radius:6px;margin-top:10px}
 .stat{padding:10px 12px;border-radius:6px;background:#fdf5e0;border-left:6px solid var(--amb);margin-bottom:8px}
 .stat.ok{background:#e6f6ea;border-left-color:var(--wa)}
+.stat.bad{background:#fde8e6;border-left-color:var(--red)}
 .cal{background:var(--chalk);border:2px solid var(--g);border-radius:6px;padding:10px}
 .cb{display:flex;justify-content:space-between;align-items:center;font-weight:700;margin-bottom:6px}
 .cb button{background:none;border:1px solid var(--ln);border-radius:4px;font-size:20px;padding:2px 12px}
@@ -79,7 +80,7 @@ footer{text-align:center;padding:24px;font-size:13px}footer a{color:#566}
 
 <main id="pub">
   <div class="gal" id="gal"></div>
-  <div id="vd"></div>
+  <img src="poster.png" alt="Golden Turf" style="width:100%;border-radius:6px;margin-top:10px" onerror="this.remove()"><div id="vd"></div>
   <div id="st"></div>
   <h2>তারিখ বাছুন</h2>
   <div class="cal"><div class="cb"><button id="pv">‹</button><span id="mn"></span><button id="nx">›</button></div><div class="gr" id="gr"></div></div>
@@ -170,6 +171,8 @@ footer{text-align:center;padding:24px;font-size:13px}footer a{color:#566}
   <div id="mf"><br>
     <label>আপনার নাম</label><input id="f_n">
     <label>ফোন নম্বর</label><input id="f_p" type="tel" placeholder="01XXXXXXXXX">
+    <label>হোয়াটসঅ্যাপ নম্বর</label><input id="f_w" type="tel" placeholder="01XXXXXXXXX">
+    <div class="note" style="margin-bottom:8px">আপনার কনফার্মেশন মেসেজটি এই হোয়াটসঅ্যাপ নম্বরে পাঠানো হবে।</div>
     <label>বিকাশ ট্রানজেকশন আইডি</label><input id="f_t">
     <div class="err" id="fe"></div>
     <button class="btn" id="fs">বুকিং জমা দিন</button>
@@ -198,6 +201,13 @@ const wl=(n,t)=>"https://wa.me/"+String(n).replace(/\D/g,"")+(t?"?text="+encodeU
 const cwa=p=>{let d=String(p).replace(/\D/g,"");if(d.startsWith("01"))d="880"+d;return d};
 const WAI='<svg viewBox="0 0 24 24" width="18" height="18" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#25D366"/><text x="12" y="16.5" font-size="12" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial">W</text></svg>';
 const mine=()=>{try{return JSON.parse(localStorage.getItem("gtm")||"{}")}catch(e){return{}}};
+const fx=()=>{try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}try{const a=new AudioContext(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=660;g.gain.value=.3;o.start();o.stop(a.currentTime+.25)}catch(e){}};
+let loaded=false,waitId=null;
+const syncClose=()=>{const f=$("fc");
+  if(!waitId){f.disabled=false;f.textContent="বন্ধ করুন";return}
+  const t=taken[waitId];
+  if(!t||t.s=="confirmed"){waitId=null;f.disabled=false;f.textContent="বন্ধ করুন"}
+  else{f.disabled=true;f.textContent="একটু অপেক্ষা করুন"}};
 
 function cfg(){
   $("nm").textContent=C.name;
@@ -212,10 +222,13 @@ function cfg(){
 }
 
 function stat(){
+  if(!loaded)return;
   const t0=key(today);
-  $("st").innerHTML=Object.entries(mine()).filter(([id,v])=>v.d>=t0&&taken[id]).map(([id,v])=>{
-    const ok=taken[id].s=="confirmed";
-    return `<div class="stat ${ok?"ok":""}">${esc(v.d)} | ${esc(v.l)}: <b>${ok?"আপনার বুকিং কনফার্ম হয়েছে ✅":"যাচাই চলছে"}</b></div>`
+  $("st").innerHTML=Object.entries(mine()).filter(([id,v])=>v.d>=t0).map(([id,v])=>{
+    const t=taken[id];
+    if(!t)return `<div class="stat bad">${esc(v.d)} | ${esc(v.l)}: <b>আপনার স্লটটি বাতিল হয়েছে। দয়া করে আবার সঠিক নিয়মে বুকিং করুন অথবা এই বুকিং নম্বরে কল করুন: ${esc(C.phone)}</b></div>`;
+    const ok=t.s=="confirmed";
+    return `<div class="stat ${ok?"ok":""}">${esc(v.d)} | ${esc(v.l)}: <b>${ok?"আপনার বুকিং কনফার্ম হয়েছে ✅ সময়মতো মাঠে উপস্থিত থাকার অনুরোধ রইল।":"যাচাই চলছে"}</b></div>`;
   }).join("");
 }
 
@@ -248,7 +261,7 @@ $("nx").onclick=()=>{vm=new Date(vm.getFullYear(),vm.getMonth()+1,1);cal()};
 $("gr").onclick=e=>{const b=e.target.closest("[data-d]");if(!b)return;const[y,m,d]=b.dataset.d.split("-");sel=new Date(+y,m-1,+d);cal();list()};
 
 $("sl").onclick=e=>{
-  const b=e.target.closest("[data-i]");if(!b)return;
+  const b=e.target.closest("[data-i]");if(!b)return;fx();
   const s=slots().filter(x=>!x.h)[b.dataset.i];
   cur={i:+b.dataset.i,s,k:key(sel),pr:pr(s,sel)};
   $("mt").textContent=s.l+" ("+bn(sel.getDate())+" "+MN[sel.getMonth()]+")";
@@ -259,15 +272,16 @@ $("sl").onclick=e=>{
 $("fc").onclick=()=>$("md").classList.remove("on");
 
 $("fs").onclick=async()=>{
-  const n=$("f_n").value.trim().slice(0,60),p=$("f_p").value.trim(),t=$("f_t").value.trim().toUpperCase();
+  const n=$("f_n").value.trim().slice(0,60),p=$("f_p").value.trim(),w=$("f_w").value.trim(),t=$("f_t").value.trim().toUpperCase();
   if(!n)return $("fe").textContent="নাম দিন";
   if(!/^01\d{9}$/.test(p))return $("fe").textContent="ঠিক ১১ সংখ্যার ফোন নম্বর দিন (01XXXXXXXXX)";
   if(!/^[A-Z0-9]{8,20}$/.test(t))return $("fe").textContent="বিকাশের ট্রানজেকশন আইডি ঠিকভাবে দিন";
+  if(!/^01\d{9}$/.test(w))return $("fe").textContent="হোয়াটসঅ্যাপ নম্বর ঠিকভাবে দিন (01XXXXXXXXX)";
   const id=cur.k+"_"+cur.i;
   if(busy(taken[id])){list();return $("fe").textContent="স্লটটি এইমাত্র অন্য কেউ নিয়ে নিয়েছে। অন্য স্লট বেছে নিন।"}
   const b=writeBatch(db),T=Date.now();
   b.set(doc(db,"taken",id),{d:cur.k,s:"pending",t:T});
-  b.set(doc(db,"bookings",id),{d:cur.k,idx:cur.i,label:cur.s.l,price:cur.pr,name:n,phone:p,trx:t,status:"pending",t:T});
+  b.set(doc(db,"bookings",id),{d:cur.k,idx:cur.i,label:cur.s.l,price:cur.pr,name:n,phone:p,wa:w,trx:t,status:"pending",t:T});
   $("fs").disabled=true;
   try{
     await b.commit();
@@ -275,12 +289,12 @@ $("fs").onclick=async()=>{
     $("mf").classList.add("hide");
     const msg=encodeURIComponent(`নতুন বুকিং\nতারিখ: ${cur.k}\nস্লট: ${cur.s.l}\nনাম: ${n}\nফোন: ${p}\nবিকাশ TrxID: ${t}`);
     $("ok").innerHTML=`<p><b>বুকিং জমা হয়েছে।</b> আমরা ট্রানজেকশন আইডি যাচাই করে কনফার্ম করব। দ্রুত কনফার্মেশনের জন্য হোয়াটসঅ্যাপে জানান:</p>${C.wa?`<a class="btn w" target="_blank" href="${wl(C.wa,decodeURIComponent(msg))}">হোয়াটসঅ্যাপে পাঠান</a>`:""}`;
-    $("ok").classList.remove("hide");
+    $("ok").classList.remove("hide");waitId=id;syncClose();
   }catch(e){$("fe").textContent="স্লটটি এইমাত্র অন্য কেউ নিয়ে নিয়েছে বা ইন্টারনেটে সমস্যা। অন্য স্লট বেছে নিন।"}
   $("fs").disabled=false;
 };
 
-onSnapshot(query(collection(db,"taken"),where("d",">=",key(today))),s=>{taken={};s.forEach(d=>taken[d.id]=d.data());list();stat()});
+onSnapshot(query(collection(db,"taken"),where("d",">=",key(today))),s=>{taken={};s.forEach(d=>taken[d.id]=d.data());loaded=true;list();stat();syncClose()});
 getDoc(doc(db,"config","main")).then(s=>{if(s.exists())C={...DEF,...s.data()};cfg();list();stat()}).catch(()=>{});
 cfg();cal();list();stat();
 
@@ -299,7 +313,24 @@ document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>tab(b.dataset
 const beep=()=>{try{const a=new AudioContext(),o=a.createOscillator();o.connect(a.destination);o.frequency.value=880;o.start();o.stop(a.currentTime+.6)}catch(e){}};
 const exp=b=>b.status=="pending"&&b.trx!="OFFLINE"&&Date.now()-b.t>H;
 
-const notifyMsg=b=>`আপনার বুকিং কনফার্ম হয়েছে ✅\n${C.name}\nতারিখ: ${b.d}\nসময়: ${b.label}\nভাড়া: ৳${b.price}\nঅগ্রিম: ৳${b.adv||0}\nবাকি: ৳${b.due||0}\nঠিকানা: ${C.address}`;
+const notifyMsg=b=>{
+  const[y,m,dd]=b.d.split("-"),M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m-1];
+  return `*⚽ GOLDEN TURF | BOOKING CONFIRMED*🏆
+
+Dear *${b.name}*
+Your booking has been successfully confirmed. 🎉
+
+📅 Date: ${+dd} ${M} ${y}
+⏰ Time: ${b.label}
+⏱️ Duration: 90 Minute
+____________________________
+💳 *Payment Summary*
+• Advance Paid: ৳${b.adv||0} (Non-Refundable)
+• Due Amount: ৳${b.due||0}
+_____________________________
+বাকি টাকা মাঠে এসে পরিশোধ করতে পারবেন।
+সময়মত মাঠে উপস্থিত থাকার অনুরোধ রইল।
+দেখা হচ্ছে গোল্ডেন টার্ফের মাঠে ⚽🔥`};
 
 const card=b=>{
   const ex=[["Confirm",b.confirm],["Refers",b.refers],["অগ্রিম কার কাছে",b.advWho],["বকেয়া কার কাছে",b.dueWho],["Note",b.note],["Water bill",b.water]].filter(x=>x[1]).map(x=>esc(x[0])+": "+esc(x[1])).join(" • ");
@@ -367,7 +398,7 @@ onAuthStateChanged(au,u=>{
 
 $("adm").onclick=async e=>{
   const t=e.target,o=t.dataset.ok,n=t.dataset.no,w=t.dataset.wa;
-  if(w){const x=ALL.find(y=>y.id==w);if(x)window.open(wl(cwa(x.phone),notifyMsg(x)),"_blank");return}
+  if(w){const x=ALL.find(y=>y.id==w);if(x)window.open(wl(cwa(x.wa||x.phone),notifyMsg(x)),"_blank");return}
   if(!o&&!n)return;
   const b=writeBatch(db);
   if(o){
