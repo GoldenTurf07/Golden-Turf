@@ -207,7 +207,7 @@ const syncClose=()=>{const f=$("fc");
   if(!waitId){f.disabled=false;f.textContent="বন্ধ করুন";return}
   const t=taken[waitId];
   if(!t||t.s=="confirmed"){waitId=null;f.disabled=false;f.textContent="বন্ধ করুন"}
-  else{f.disabled=true;f.textContent="একটু অপেক্ষা করুন"}};
+  else{f.disabled=false;f.textContent="একটু অপেক্ষা করুন"}};
 
 function cfg(){
   $("nm").textContent=C.name;
